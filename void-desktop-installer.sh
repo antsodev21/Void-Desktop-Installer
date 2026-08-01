@@ -86,7 +86,7 @@ while true; do
         1)  
             echo "Installing GNOME"
             configurar_audio_bluetooth
-            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
+            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon gdm gnome
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -94,6 +94,7 @@ while true; do
             sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
+            pkill elogind
             sudo ln -s /etc/sv/gdm/ /var/service/
 
             ;;
