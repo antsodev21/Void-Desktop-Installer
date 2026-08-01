@@ -1,2 +1,2 @@
 # Void-Desktop-Installer
-Un script de Instalacion de Escritorios para Void Linux hecho en bash con ayuda de dialog
+Este proyecto es un instalador de Entornos de Escritorio para Void, como siempre la parte mas puñetera para mi de Void es la instalacion de Escritorios pues quise automatizarlos, y ya de paso que sea mas facil para algunas personas que quieran usar Void, eso si, todavia esta en Desarrollo, ya que Pipewire me esta dando problemas y todavia no probé na mas que KDE Plasma, espero poder solucionarlo pronto ;3
