@@ -145,4 +145,7 @@ while true; do
 
             ;;
     esac
+
+    echo "Desktop installed. Rebooting is recommended."
+    break
 done
