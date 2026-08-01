@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Hace que si hay algun fallo, el Script se detenga
-set -euo pipefail
+#set -euo pipefail
 
 echo "#==Void-Linux-Desktop-Installer-by-Antsoftware21==#"
 sudo xbps-install dialog
@@ -54,7 +54,7 @@ configurar_audio_bluetooth() {
 
     if [ $BLUETOOTH -eq 0 ]; then
         echo "Installing Bluetooth support..."
-        sudo xbps-install -S bluez bluez-firmware && sudo ln -s /etc/sv/bluetoothd/ /var/service/ && sudo usermod -aG bluetooth $USER
+        sudo xbps-install -S bluez && sudo ln -s /etc/sv/bluetoothd/ /var/service/ && sudo usermod -aG bluetooth $USER
     else
         echo "Skipping Bluetooth"
     fi
@@ -84,8 +84,8 @@ while true; do
 
         1)  
             echo "Installing GNOME"
-	    sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
             configurar_audio_bluetooth
+	    sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
 	    sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -99,8 +99,8 @@ while true; do
 
         2)
 	    echo "Installing KDE Plasma"
-	    sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon sddm kde-plasma kde-baseapps ark spectacle
             configurar_audio_bluetooth
+	    sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon sddm kde-plasma kde-baseapps ark spectacle
 	    sudo rm -rf /var/service/dhcpcd/
 	    sudo rm -rf /var/service/wpa_supplicant
 	    sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -113,8 +113,8 @@ while true; do
 
         3)
             echo "Installing Xfce"
-            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
             configurar_audio_bluetooth
+            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
 	    sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -128,8 +128,8 @@ while true; do
 
         4)
 	    echo "Installing Cinnamon"
+            configurar_audio_bluetooth
             sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
-	    configurar_audio_bluetooth
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
 	    sudo ln -s /etc/sv/NetworkManager /var/service/
