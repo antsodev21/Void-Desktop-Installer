@@ -118,7 +118,7 @@ while true; do
         3)
             echo "Installing Xfce"
             configurar_audio_bluetooth
-            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
+            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm xfce4
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -126,6 +126,7 @@ while true; do
             sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
+            pkill elogind
             sudo ln -s /etc/sv/lightdm/ /var/service/
 
             ;;
@@ -133,7 +134,7 @@ while true; do
         4)
             echo "Installing Cinnamon"
             configurar_audio_bluetooth
-            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
+            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm cinnamon papirus-icon-theme
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -141,9 +142,11 @@ while true; do
             sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
+            pkill elogind
             sudo ln -s /etc/sv/lightdm/ /var/service/
 
             ;;
+
     esac
 
     echo "Desktop installed. Rebooting is recommended."
