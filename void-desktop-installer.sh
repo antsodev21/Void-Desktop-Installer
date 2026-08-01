@@ -91,6 +91,8 @@ while true; do
         1)  
             echo "Installing GNOME"
             configurar_audio_bluetooth
+            sudo rm -rf /var/service/dhcpcd/
+            sudo rm -rf /var/service/wpa_supplicant
 	    sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
             sudo ln -s /etc/sv/gdm/ /var/service/
@@ -101,6 +103,8 @@ while true; do
 	    echo "Installing KDE Plasma"
 	    sudo xbps-install -S sddm kde-plasma kde-meta ark spectacle
             configurar_audio_bluetooth
+	    sudo rm -rf /var/service/dhcpcd/
+	    sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/polkitd/ /var/service/
 	    sudo ln -s /etc/sv/elogind/ /var/service/
 	    sudo ln -s /etc/sv/sddm/ /var/service/
@@ -109,6 +113,8 @@ while true; do
         3)
             echo "Installing Xfce"
             configurar_audio_bluetooth
+            sudo rm -rf /var/service/dhcpcd/
+            sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
             sudo ln -s /etc/sv/lightdm/ /var/service/
@@ -118,6 +124,8 @@ while true; do
         4)
 	    echo "Installing Cinnamon"
 	    configurar_audio_bluetooth
+            sudo rm -rf /var/service/dhcpcd/
+            sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
             sudo ln -s /etc/sv/lightdm/ /var/service/
