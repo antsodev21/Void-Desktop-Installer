@@ -109,6 +109,9 @@ while true; do
             sudo ln -s /etc/sv/polkitd/ /var/service/
 	    sudo ln -s /etc/sv/elogind/ /var/service/
 	    sudo ln -s /etc/sv/sddm/ /var/service/
+	    pkill elogind
+	    echo "Your PC Reboot Now"
+	    sudo reboot	
 	    ;;
 
         3)
