@@ -4,13 +4,7 @@
 set -euo pipefail
 
 echo "#==Void-Linux-Desktop-Installer-by-Antsoftware21==#"
-echo "Installing Common Packages...."
-sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
-
-# Crea Enlaces Simbolicos para los Servicios Comunes
-sudo ln -s /etc/sv/NetworkManager /var/service/
-sudo ln -s /etc/sv/dbus/ /var/service/
-sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
+sudo xbps-install dialog
 
 #==SUBMENÚ-DE-OPCIONES==#
 configurar_audio_bluetooth() {
@@ -90,9 +84,13 @@ while true; do
 
         1)  
             echo "Installing GNOME"
+	    sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
             configurar_audio_bluetooth
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
+	    sudo ln -s /etc/sv/NetworkManager /var/service/
+	    sudo ln -s /etc/sv/dbus/ /var/service/
+	    sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
 	    sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
             sudo ln -s /etc/sv/gdm/ /var/service/
@@ -101,10 +99,13 @@ while true; do
 
         2)
 	    echo "Installing KDE Plasma"
-	    sudo xbps-install -S sddm kde-plasma kde-meta ark spectacle
+	    sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon sddm kde-plasma kde-baseapps ark spectacle
             configurar_audio_bluetooth
 	    sudo rm -rf /var/service/dhcpcd/
 	    sudo rm -rf /var/service/wpa_supplicant
+	    sudo ln -s /etc/sv/NetworkManager /var/service/
+	    sudo ln -s /etc/sv/dbus/ /var/service/
+	    sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
 	    sudo ln -s /etc/sv/elogind/ /var/service/
 	    sudo ln -s /etc/sv/sddm/ /var/service/
@@ -112,9 +113,13 @@ while true; do
 
         3)
             echo "Installing Xfce"
+            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
             configurar_audio_bluetooth
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
+	    sudo ln -s /etc/sv/NetworkManager /var/service/
+      	    sudo ln -s /etc/sv/dbus/ /var/service/	
+            sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
             sudo ln -s /etc/sv/lightdm/ /var/service/
@@ -123,9 +128,13 @@ while true; do
 
         4)
 	    echo "Installing Cinnamon"
+            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
 	    configurar_audio_bluetooth
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
+	    sudo ln -s /etc/sv/NetworkManager /var/service/
+            sudo ln -s /etc/sv/dbus/ /var/service/
+	    sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
             sudo ln -s /etc/sv/lightdm/ /var/service/
