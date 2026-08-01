@@ -85,33 +85,32 @@ while true; do
         1)  
             echo "Installing GNOME"
             configurar_audio_bluetooth
-	    sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
+	        sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
-	    sudo ln -s /etc/sv/NetworkManager /var/service/
-	    sudo ln -s /etc/sv/dbus/ /var/service/
-	    sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
-	    sudo ln -s /etc/sv/polkitd/ /var/service/
+	        sudo ln -s /etc/sv/NetworkManager /var/service/
+	        sudo ln -s /etc/sv/dbus/ /var/service/
+	        sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
+	        sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
             sudo ln -s /etc/sv/gdm/ /var/service/
 
             ;;
 
         2)
-	    echo "Installing KDE Plasma"
+	        echo "Installing KDE Plasma"
             configurar_audio_bluetooth
-	    sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon sddm kde-plasma kde-baseapps ark spectacle
-	    sudo rm -rf /var/service/dhcpcd/
-	    sudo rm -rf /var/service/wpa_supplicant
-	    sudo ln -s /etc/sv/NetworkManager /var/service/
-	    sudo ln -s /etc/sv/dbus/ /var/service/
-	    sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
+	        sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon sddm kde-plasma kde-baseapps ark spectacle
+	    	sudo rm -rf /var/service/dhcpcd/
+	    	sudo rm -rf /var/service/wpa_supplicant
+	    	sudo ln -s /etc/sv/NetworkManager /var/service/
+	    	sudo ln -s /etc/sv/dbus/ /var/service/
+	    	sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
-	    sudo ln -s /etc/sv/elogind/ /var/service/
-	    sudo ln -s /etc/sv/sddm/ /var/service/
-	    pkill elogind
-	    echo "Your PC Reboot Now"
-	    sudo reboot	
+	    	sudo ln -s /etc/sv/elogind/ /var/service/
+	   		sudo ln -s /etc/sv/sddm/ /var/service/
+	    	pkill elogind
+	    	sudo reboot	
 	    ;;
 
         3)
@@ -120,7 +119,7 @@ while true; do
             sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
-	    sudo ln -s /etc/sv/NetworkManager /var/service/
+	        sudo ln -s /etc/sv/NetworkManager /var/service/
       	    sudo ln -s /etc/sv/dbus/ /var/service/	
             sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
@@ -130,14 +129,14 @@ while true; do
 	    ;;
 
         4)
-	    echo "Installing Cinnamon"
+	    	echo "Installing Cinnamon"
             configurar_audio_bluetooth
             sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
-	    sudo ln -s /etc/sv/NetworkManager /var/service/
+	    	sudo ln -s /etc/sv/NetworkManager /var/service/
             sudo ln -s /etc/sv/dbus/ /var/service/
-	    sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
+	    	sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
             sudo ln -s /etc/sv/lightdm/ /var/service/
