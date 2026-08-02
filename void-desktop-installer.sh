@@ -160,7 +160,8 @@ while true; do
             pkill elogind
             sudo ln -s /etc/sv/lightdm/ /var/service/
 
-            cat > /etc/xdg/autostart/nm-applet.desktop << 'EOF'
+            sudo touch /etc/xdg/autostart/nm-applet.desktop
+            sudo cat > /etc/xdg/autostart/nm-applet.desktop << 'EOF'
 [Desktop Entry]
 Type=Application
 Name=Network Manager Applet
