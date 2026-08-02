@@ -149,7 +149,7 @@ while true; do
             echo "Installing Budgie"
             configurar_audio_bluetooth
             sudo xbps-install -Sy xorg xdg-user-dirs NetworkManager elogind dbus adwaita-fonts nerd-fonts power-profiles-daemon \
-            lightdm mutter budgie-desktop gnome-keyring polkit-gnome network-manager-applet nemo tilix engrampa papirus-icon-theme udisks2
+            lightdm mutter budgie-desktop gnome-keyring polkit-gnome udisks2 network-manager-applet nemo tilix engrampa papirus-icon-theme arc-theme
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
