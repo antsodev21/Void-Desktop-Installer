@@ -42,7 +42,7 @@ configurar_audio_bluetooth() {
 
         2)
             echo "Installing PipeWire..."
-            sudo xbps-install -Sy pipewire wireplumber alsa-pipewire libjack-pipewire
+            sudo xbps-install -Sy pipewire wireplumber alsa-pipewire libjack-pipewire pavucontrol pulseaudio-utils
 
             # Configura pipewire para que levante wireplumber y pipewire-pulse el mismo
             sudo mkdir -p /etc/pipewire/pipewire.conf.d
@@ -58,12 +58,8 @@ configurar_audio_bluetooth() {
             sudo mkdir -p /etc/xdg/autostart
             sudo ln -sf /usr/share/applications/pipewire.desktop /etc/xdg/autostart/
 
-            sudo groupadd pipewire
-            sudo groupadd pulse
-            sudo groupadd pulse-access
-            sudo usermod -aG pipewire $USER
-            sudo usermod -aG pulse $USER
-            sudo usermod -aG pulse-access $USER
+            # Grupos necesarios para acceder a los dispositivos de audio/video
+            sudo usermod -aG audio,video $USER
 
             ;;
     esac
@@ -91,7 +87,7 @@ while true; do
         1 "GNOME" \
         2 "KDE Plasma" \
         3 "Xfce" \
-        4 "Cinnamon" \
+        4 "Budgie" \
         2>&1 >/dev/tty)
     
     # Permite que si le das a Esc o a Cancelar se cancele la instalacion
@@ -153,9 +149,9 @@ while true; do
             ;;
 
         4)
-            echo "Installing Cinnamon"
+            echo "Installing Budgie"
             configurar_audio_bluetooth
-            sudo xbps-install -Sy xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm cinnamon gnome-terminal papirus-icon-theme
+            sudo xbps-install -Sy xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm budgie-desktop tilix papirus-icon-theme
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
