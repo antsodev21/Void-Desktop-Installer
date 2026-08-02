@@ -159,7 +159,16 @@ while true; do
             sudo ln -s /etc/sv/elogind/ /var/service/
             pkill elogind
             sudo ln -s /etc/sv/lightdm/ /var/service/
-            sed -i 's|^Exec=.*|Exec=nm-applet --indicator|' /etc/xdg/autostart/nm-applet.desktop
+            cat > /etc/xdg/autostart/nm-applet.desktop << 'EOF'
+[Desktop Entry]
+Type=Application
+Name=Network Manager Applet
+Exec=sh -c "sleep 2 && nm-applet --indicator"
+Icon=nm-device-wireless
+Terminal=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+EOF
 
             ;;
 
