@@ -101,8 +101,8 @@ while true; do
             echo "Installing GNOME"
             configurar_audio_bluetooth
             sudo xbps-install -Sy xorg xdg-user-dirs NetworkManager elogind dbus nerd-fonts power-profiles-daemon gdm gnome
-            sudo rm -f /var/service/dhcpcd/
-            sudo rm -f /var/service/wpa_supplicant
+            sudo rm -rf /var/service/dhcpcd/
+            sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
             sudo ln -s /etc/sv/dbus/ /var/service/
             sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
@@ -117,8 +117,8 @@ while true; do
             echo "Installing KDE Plasma"
             configurar_audio_bluetooth
             sudo xbps-install -Sy xorg xdg-user-dirs NetworkManager elogind dbus nerd-fonts power-profiles-daemon sddm kde-plasma kde-baseapps ark spectacle
-            sudo rm -f /var/service/dhcpcd/
-            sudo rm -f /var/service/wpa_supplicant
+            sudo rm -rf /var/service/dhcpcd/
+            sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
             sudo ln -s /etc/sv/dbus/ /var/service/
             sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
@@ -133,8 +133,8 @@ while true; do
             echo "Installing Xfce"
             configurar_audio_bluetooth
             sudo xbps-install -Sy xorg xdg-user-dirs NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm xfce4
-            sudo rm -f /var/service/dhcpcd/
-            sudo rm -f /var/service/wpa_supplicant
+            sudo rm -rf /var/service/dhcpcd/
+            sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
             sudo ln -s /etc/sv/dbus/ /var/service/
             sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
@@ -150,8 +150,8 @@ while true; do
             configurar_audio_bluetooth
             sudo xbps-install -Sy xorg xdg-user-dirs NetworkManager elogind dbus adwaita-fonts nerd-fonts power-profiles-daemon \
             lightdm budgie-desktop gnome-keyring polkit-gnome network-manager-applet nemo tilix papirus-icon-theme udisks2
-            sudo rm -f /var/service/dhcpcd/
-            sudo rm -f /var/service/wpa_supplicant
+            sudo rm -rf /var/service/dhcpcd/
+            sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
             sudo ln -s /etc/sv/dbus/ /var/service/
             sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
