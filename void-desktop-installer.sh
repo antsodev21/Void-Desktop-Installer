@@ -164,7 +164,7 @@ while true; do
 [Desktop Entry]
 Type=Application
 Name=Network Manager Applet
-Exec=sh -c "sleep 2 && nm-applet --indicator"
+Exec=nm-applet --indicator
 Icon=nm-device-wireless
 Terminal=false
 NoDisplay=false
