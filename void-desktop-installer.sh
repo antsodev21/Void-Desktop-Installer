@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Hace que si hay algun fallo, el Script se detenga
-#set -euo pipefail
-
 echo "#==Void-Linux-Desktop-Installer-by-Antsoftware21==#"
 sudo xbps-install -Sy dialog
 
@@ -103,7 +100,7 @@ while true; do
         1)  
             echo "Installing GNOME"
             configurar_audio_bluetooth
-            sudo xbps-install -Sy xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon gdm gnome
+            sudo xbps-install -Sy xorg xdg-user-dirs NetworkManager elogind dbus nerd-fonts power-profiles-daemon gdm gnome
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -119,7 +116,7 @@ while true; do
         2)
             echo "Installing KDE Plasma"
             configurar_audio_bluetooth
-            sudo xbps-install -Sy xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon sddm kde-plasma kde-baseapps ark spectacle
+            sudo xbps-install -Sy xorg xdg-user-dirs NetworkManager elogind dbus nerd-fonts power-profiles-daemon sddm kde-plasma kde-baseapps ark spectacle
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -135,7 +132,7 @@ while true; do
         3)
             echo "Installing Xfce"
             configurar_audio_bluetooth
-            sudo xbps-install -Sy xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm xfce4
+            sudo xbps-install -Sy xorg xdg-user-dirs NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm xfce4
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -151,7 +148,8 @@ while true; do
         4)
             echo "Installing Budgie"
             configurar_audio_bluetooth
-            sudo xbps-install -Sy xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm budgie-desktop tilix papirus-icon-theme
+            sudo xbps-install -Sy xorg xdg-user-dirs NetworkManager elogind dbus adwaita-fonts nerd-fonts power-profiles-daemon \
+            lightdm budgie-desktop gnome-keyring polkit-gnome network-manager-applet nemo tilix papirus-icon-theme
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -161,6 +159,7 @@ while true; do
             sudo ln -s /etc/sv/elogind/ /var/service/
             pkill elogind
             sudo ln -s /etc/sv/lightdm/ /var/service/
+            sed -i 's|^Exec=.*|Exec=nm-applet --indicator|' /etc/xdg/autostart/nm-applet.desktop
 
             ;;
 
