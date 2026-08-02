@@ -108,7 +108,7 @@ while true; do
             sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
-            pkill elogind
+            sudo pkill elogind
             sudo ln -s /etc/sv/gdm/ /var/service/
 
             ;;
@@ -124,7 +124,7 @@ while true; do
             sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
-            pkill elogind
+            sudo pkill elogind
             sudo ln -s /etc/sv/sddm/ /var/service/
 
             ;;
@@ -140,7 +140,7 @@ while true; do
             sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
-            pkill elogind
+            sudo pkill elogind
             sudo ln -s /etc/sv/lightdm/ /var/service/
 
             ;;
@@ -157,9 +157,10 @@ while true; do
             sudo ln -s /etc/sv/power-profiles-daemon/ /var/service/
             sudo ln -s /etc/sv/polkitd/ /var/service/
             sudo ln -s /etc/sv/elogind/ /var/service/
-            pkill elogind
+            sudo pkill elogind
             sudo ln -s /etc/sv/lightdm/ /var/service/
 
+            sudo rm /etc/xdg/autostart/nm-applet.desktop
             sudo touch /etc/xdg/autostart/nm-applet.desktop
             sudo cat > /etc/xdg/autostart/nm-applet.desktop << 'EOF'
 [Desktop Entry]
