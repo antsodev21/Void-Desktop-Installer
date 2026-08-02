@@ -4,7 +4,7 @@
 #set -euo pipefail
 
 echo "#==Void-Linux-Desktop-Installer-by-Antsoftware21==#"
-sudo xbps-install dialog
+sudo xbps-install -Sy dialog
 
 #==SUBMENÚ-DE-OPCIONES==#
 configurar_audio_bluetooth() {
@@ -36,13 +36,13 @@ configurar_audio_bluetooth() {
 
         1)
             echo "Installing PulseAudio..."
-            sudo xbps-install -S pulseaudio pavucontrol
+            sudo xbps-install -Sy pulseaudio pavucontrol
 
             ;;
 
         2)
             echo "Installing PipeWire..."
-            sudo xbps-install -S pipewire wireplumber alsa-pipewire libjack-pipewire
+            sudo xbps-install -Sy pipewire wireplumber alsa-pipewire libjack-pipewire
 
             # Configura pipewire para que levante wireplumber y pipewire-pulse el mismo
             sudo mkdir -p /etc/pipewire/pipewire.conf.d
@@ -70,10 +70,10 @@ configurar_audio_bluetooth() {
 
     if [ $BLUETOOTH -eq 0 ]; then
         echo "Installing Bluetooth support..."
-        sudo xbps-install -S bluez
+        sudo xbps-install -Sy bluez
         # Audio Bluetooth por PipeWire
         if [ "$AUDIO" = "2" ]; then
-            sudo xbps-install -S libspa-bluetooth
+            sudo xbps-install -Sy libspa-bluetooth
         fi
         sudo ln -sf /etc/sv/bluetoothd/ /var/service/
         sudo usermod -aG bluetooth $USER
@@ -107,7 +107,7 @@ while true; do
         1)  
             echo "Installing GNOME"
             configurar_audio_bluetooth
-            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon gdm gnome
+            sudo xbps-install -Sy xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon gdm gnome
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -123,7 +123,7 @@ while true; do
         2)
             echo "Installing KDE Plasma"
             configurar_audio_bluetooth
-            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon sddm kde-plasma kde-baseapps ark spectacle
+            sudo xbps-install -Sy xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon sddm kde-plasma kde-baseapps ark spectacle
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -139,7 +139,7 @@ while true; do
         3)
             echo "Installing Xfce"
             configurar_audio_bluetooth
-            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm xfce4
+            sudo xbps-install -Sy xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm xfce4
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
@@ -155,7 +155,7 @@ while true; do
         4)
             echo "Installing Cinnamon"
             configurar_audio_bluetooth
-            sudo xbps-install -S xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm cinnamon papirus-icon-theme
+            sudo xbps-install -Sy xorg NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm cinnamon gnome-terminal papirus-icon-theme
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
