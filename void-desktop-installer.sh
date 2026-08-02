@@ -43,6 +43,21 @@ configurar_audio_bluetooth() {
         2)
             echo "Installing PipeWire..."
             sudo xbps-install -S pipewire wireplumber alsa-pipewire libjack-pipewire
+
+            # Configura pipewire para que levante wireplumber y pipewire-pulse el mismo
+            sudo mkdir -p /etc/pipewire/pipewire.conf.d
+            sudo ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
+            sudo ln -sf /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
+
+            # Integra ALSA a traves de PipeWire
+            sudo mkdir -p /etc/alsa/conf.d
+            sudo ln -sf /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d/
+            sudo ln -sf /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
+
+            # Autostart XDG: funciona en GNOME, Plasma, Xfce y Cinnamon
+            sudo mkdir -p /etc/xdg/autostart
+            sudo ln -sf /usr/share/applications/pipewire.desktop /etc/xdg/autostart/
+
             sudo groupadd pipewire
             sudo groupadd pulse
             sudo groupadd pulse-access
@@ -55,7 +70,13 @@ configurar_audio_bluetooth() {
 
     if [ $BLUETOOTH -eq 0 ]; then
         echo "Installing Bluetooth support..."
-        sudo xbps-install -S bluez && sudo ln -s /etc/sv/bluetoothd/ /var/service/ && sudo usermod -aG bluetooth $USER
+        sudo xbps-install -S bluez
+        # Audio Bluetooth por PipeWire
+        if [ "$AUDIO" = "2" ]; then
+            sudo xbps-install -S libspa-bluetooth
+        fi
+        sudo ln -sf /etc/sv/bluetoothd/ /var/service/
+        sudo usermod -aG bluetooth $USER
     else
         echo "Skipping Bluetooth"
     fi
@@ -149,6 +170,8 @@ while true; do
 
     esac
 
+    clear
     echo "Desktop installed. Rebooting is recommended."
+
     break
 done
