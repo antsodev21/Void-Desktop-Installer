@@ -132,7 +132,7 @@ while true; do
         3)
             echo "Installing Xfce"
             configurar_audio_bluetooth
-            sudo xbps-install -Sy xorg xdg-user-dirs NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm xfce4
+            sudo xbps-install -Sy xorg xdg-user-dirs NetworkManager elogind dbus nerd-fonts power-profiles-daemon lightdm xfce4 xfce4-pulseaudio-plugin network-manager-applet
             sudo rm -rf /var/service/dhcpcd/
             sudo rm -rf /var/service/wpa_supplicant
             sudo ln -s /etc/sv/NetworkManager /var/service/
