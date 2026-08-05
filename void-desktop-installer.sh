@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-#instalar dialog
-if ! command -v dialog >/dev/null 2>&1; then
-    $please xbps-install -Sy dialog
-fi
 #Detector de gestor de permisos de superusuario
 if command -v sudo >/dev/null 2>&1; then
     please="sudo"
@@ -12,6 +8,11 @@ else
     echo "Please Install sudo or doas"
     exit 1
 fi
+#instalar dialog
+if ! command -v dialog >/dev/null 2>&1; then
+    $please xbps-install -Sy dialog
+fi
+
 #==SUBMENÚ-DE-OPCIONES==#
 configurar_audio_bluetooth() {
     # Pregunta por el servidor de audio
@@ -83,7 +84,20 @@ configurar_audio_bluetooth() {
         echo "Skipping Bluetooth"
     fi
 }
-
+#Servicios por defecto de voidlinux
+base-sv() {
+    $please bash -c ' 
+        # Cambiado polkitd por polkit
+        xbps-install -Sy xorg xdg-user-dirs power-profiles-daemon polkit NetworkManager elogind dbus gvfs-afc gvfs-mtp gvfs-smb xdg-desktop-portal
+        rm -rf /var/service/dhcpcd/
+        rm -rf /var/service/wpa_supplicant
+        ln -sf /etc/sv/NetworkManager /var/service/
+        ln -sf /etc/sv/dbus /var/service/
+        ln -sf /etc/sv/power-profiles-daemon /var/service/
+        ln -sf /etc/sv/polkitd /var/service/
+    '
+    $please sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=ignore/g' /etc/elogind/logind.conf
+}
 #==MENÚ-DE-OPCIONES==#
 while true; do
     DESKTOP=$(dialog --clear \
@@ -106,20 +120,7 @@ while true; do
         echo "Installation aborted"
         exit 0
     fi
-    #Servicios por defecto de voidlinux
-    base-sv(){
-    $please bash -c ' 
-        xbps-install -Sy xorg xdg-user-dirs power-profiles-daemon polkitd NetworkManager elogind dbus gvfs-afc gvfs-mtp gvfs-smb xdg-desktop-portal
-        rm -rf /var/service/dhcpcd/
-        rm -rf /var/service/wpa_supplicant
-        ln -s /etc/sv/NetworkManager /var/service/
-        ln -s /etc/sv/dbus/ /var/service/
-        ln -s /etc/sv/power-profiles-daemon/ /var/service/
-        ln -s /etc/sv/polkitd/ /var/service/
-        ln -sf /etc/sv/dbus /var/service/
-       '
-    $please sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=ignore/g' /etc/elogind/logind.conf
-    }
+    
     # En el caso que $DESKTOP sea "Escritorio" hara una cosa u otra
     case $DESKTOP in
 
@@ -169,30 +170,36 @@ X-GNOME-Autostart-enabled=true
 INNER_EOF
 EOF
             ;;
-            5)
-                echo "installing cinnamon"
-                configurar_audio_bluetooth
-                base-sv
-                $please xbps-install cinnamon gnome-terminal colord
+        5)
+            echo "Installing Cinnamon"
+            configurar_audio_bluetooth
+            base-sv
+            $please xbps-install -Sy lightdm cinnamon gnome-terminal colord
+            $please ln -sf /etc/sv/lightdm/ /var/service/
             ;;
 
-            6)
-                echo "installing icewm"
-                configurar_audio_bluetooth
-                base-sv
-                $please xbps-install icewm xarchiver p7zip ristretto arandr pcmanfm xdg-desktop-portal-gtk
+        6)
+            echo "Installing IceWM"
+            configurar_audio_bluetooth
+            base-sv
+            $please xbps-install -Sy lightdm icewm xarchiver p7zip ristretto arandr pcmanfm xdg-desktop-portal-gtk
+            $please ln -sf /etc/sv/lightdm/ /var/service/
             ;;
-            7)
-                echo "installing lxqt"
-                configurar_audio_bluetooth
-                base-sv
-                $please xbps-install discover qt6-virtualkeyboard qt6-svg qt6-multimedia lxqt
+            
+        7)
+            echo "Installing LXQt"
+            configurar_audio_bluetooth
+            base-sv
+            $please xbps-install -Sy sddm discover qt6-virtualkeyboard qt6-svg qt6-multimedia lxqt
+            $please ln -sf /etc/sv/sddm/ /var/service/
             ;;
-            8)
-                echo "installing mate"
-                configurar_audio_bluetooth
-                base-sv
-                $please xbps-install mate-extras mate mate-tweak mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot
+            
+        8)
+            echo "Installing MATE"
+            configurar_audio_bluetooth
+            base-sv
+            $please xbps-install -Sy lightdm mate-extras mate mate-tweak mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot
+            $please ln -sf /etc/sv/lightdm/ /var/service/
             ;;
 
     esac
