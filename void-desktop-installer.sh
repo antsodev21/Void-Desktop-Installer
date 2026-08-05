@@ -104,7 +104,7 @@ while true; do
     #Servicios por defecto de voidlinux
     base-sv(){
     $please bash -c ' 
-        xbps-install -Sy xorg xdg-user-dirs NetworkManager elogind dbus
+        xbps-install -Sy xorg xdg-user-dirs power-profiles-daemon polkitd NetworkManager elogind dbus
         rm -rf /var/service/dhcpcd/
         rm -rf /var/service/wpa_supplicant
         ln -s /etc/sv/NetworkManager /var/service/
