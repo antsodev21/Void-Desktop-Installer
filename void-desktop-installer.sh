@@ -6,6 +6,7 @@ elif command -v doas >/dev/null 2>&1; then
     please="doas"
 else
     echo "Please Install sudo or doas"
+    exit 1
 fi
 echo "#==Void-Linux-Desktop-Installer-by-Antsoftware21==#"
 $please xbps-install -Sy dialog
@@ -62,10 +63,9 @@ configurar_audio_bluetooth() {
             # Autostart XDG: funciona en GNOME, Plasma, Xfce y Cinnamon
             mkdir -p /etc/xdg/autostart
             ln -sf /usr/share/applications/pipewire.desktop /etc/xdg/autostart/
-
-            # Grupos necesarios para acceder a los dispositivos de audio/video
-            usermod -aG audio,video $USER
             '
+            # Grupos necesarios para acceder a los dispositivos de audio/video
+            $please usermod -aG audio,video $USER
             ;;
     esac
 
@@ -145,13 +145,12 @@ while true; do
             echo "Installing Budgie"
             configurar_audio_bluetooth
             base-sv
-            $please bash -c '
+            $please bash << "EOF"
             xbps-install -Sy lightdm mutter budgie-desktop gnome-keyring polkit-gnome udisks2 network-manager-applet nemo tilix engrampa papirus-icon-theme arc-theme
-            ln -s /etc/sv/lightdm/ /var/service/
-            rm /etc/xdg/autostart/nm-applet.desktop
-            touch /etc/xdg/autostart/nm-applet.desktop
-            cat > /etc/xdg/autostart/nm-applet.desktop << 'EOF'
-            '
+            ln -sf /etc/sv/lightdm/ /var/service/
+            
+            mkdir -p /etc/xdg/autostart
+            cat > /etc/xdg/autostart/nm-applet.desktop << 'INNER_EOF'
 [Desktop Entry]
 Type=Application
 Name=Network Manager Applet
@@ -160,8 +159,8 @@ Icon=nm-device-wireless
 Terminal=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
+INNER_EOF
 EOF
-
             ;;
 
     esac
