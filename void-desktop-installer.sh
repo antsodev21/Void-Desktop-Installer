@@ -93,6 +93,10 @@ while true; do
         2 "KDE Plasma" \
         3 "Xfce" \
         4 "Budgie" \
+        5 "Cinnamon" \
+        6 "Icewm" \
+        7 "Lxqt" \
+        8 "mate" \
         2>&1 >/dev/tty)
     
     # Permite que si le das a Esc o a Cancelar se cancele la instalacion
@@ -104,7 +108,7 @@ while true; do
     #Servicios por defecto de voidlinux
     base-sv(){
     $please bash -c ' 
-        xbps-install -Sy xorg xdg-user-dirs power-profiles-daemon polkitd NetworkManager elogind dbus gvfs-afc gvfs-mtp gvfs-smb 
+        xbps-install -Sy xorg xdg-user-dirs power-profiles-daemon polkitd NetworkManager elogind dbus gvfs-afc gvfs-mtp gvfs-smb xdg-desktop-portal
         rm -rf /var/service/dhcpcd/
         rm -rf /var/service/wpa_supplicant
         ln -s /etc/sv/NetworkManager /var/service/
@@ -163,10 +167,29 @@ INNER_EOF
 EOF
             ;;
             5)
+                echo "installing cinnamon"
+                configurar_audio_bluetooth
+                base-sv
+                $please xbps-install cinnamon gnome-terminal colord
+            ;;
+
+            6)
                 echo "installing icewm"
                 configurar_audio_bluetooth
                 base-sv
-                xbps-install icewm
+                $please xbps-install icewm xarchiver p7zip ristretto arandr pcmanfm xdg-desktop-portal-gtk
+            ;;
+            7)
+                echo "installing lxqt"
+                configurar_audio_bluetooth
+                base-sv
+                $please xbps-install discover qt6-virtualkeyboard qt6-svg qt6-multimedia lxqt
+            ;;
+            8)
+                echo "installing mate"
+                configurar_audio_bluetooth
+                base-sv
+                $please xbps-install mate-extra mate mate-tweak mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot
             ;;
 
     esac
