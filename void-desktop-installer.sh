@@ -96,7 +96,8 @@ base-sv() {
         ln -sf /etc/sv/power-profiles-daemon /var/service/
         ln -sf /etc/sv/polkitd /var/service/
     '
-    $please sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=ignore/g' /etc/elogind/logind.conf
+    #Para deshabilitar la accion de cerrar la tapa...
+    #$please sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=ignore/g' /etc/elogind/logind.conf
 }
 #==MENÚ-DE-OPCIONES==#
 while true; do
@@ -147,6 +148,14 @@ while true; do
             base-sv
             $please xbps-install -Sy lightdm xfce4 xfce4-pulseaudio-plugin network-manager-applet
             $please  ln -sf /etc/sv/lightdm /var/service/
+            # Acción al cerrar la tapa usando batería (0 = No hacer nada)
+            xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lid-action-on-battery -n -t int -s 0
+            
+            # Acción al cerrar la tapa usando el cargador (0 = No hacer nada)
+            xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lid-action-on-ac -n -t int -s 0
+            
+            # Evitar que elogind/logind tome el control de la tapa y sobrescriba a Xfce
+            xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/logind-handle-lid-switch -n -t bool -s false
             ;;
 
         4)
