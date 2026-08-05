@@ -104,7 +104,7 @@ while true; do
     #Servicios por defecto de voidlinux
     base-sv(){
     $please bash -c ' 
-        xbps-install -Sy xorg xdg-user-dirs power-profiles-daemon polkitd NetworkManager elogind dbus
+        xbps-install -Sy xorg xdg-user-dirs power-profiles-daemon polkitd NetworkManager elogind dbus gvfs-afc gvfs-mtp gvfs-smb 
         rm -rf /var/service/dhcpcd/
         rm -rf /var/service/wpa_supplicant
         ln -s /etc/sv/NetworkManager /var/service/
@@ -161,6 +161,12 @@ NoDisplay=false
 X-GNOME-Autostart-enabled=true
 INNER_EOF
 EOF
+            ;;
+            5)
+                echo "installing icewm"
+                configurar_audio_bluetooth
+                base-sv
+                xbps-install icewm
             ;;
 
     esac
