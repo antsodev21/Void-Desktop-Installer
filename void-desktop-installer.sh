@@ -129,7 +129,7 @@ while true; do
             configurar_audio_bluetooth
             base-sv
             $please xbps-install -Sy gdm gnome
-            $please  ln -s /etc/sv/gdm/ /var/service/
+            $please ln -sf /etc/sv/gdm /var/service/
 
             ;;
 
@@ -138,7 +138,7 @@ while true; do
             configurar_audio_bluetooth
             base-sv
             $please xbps-install -Sy sddm kde-plasma kde-baseapps ark spectacle
-            $please ln -s /etc/sv/sddm/ /var/service/
+            $please ln -s /etc/sv/sddm /var/service/
             ;;
 
         3)
@@ -146,7 +146,7 @@ while true; do
             configurar_audio_bluetooth
             base-sv
             $please xbps-install -Sy lightdm xfce4 xfce4-pulseaudio-plugin network-manager-applet
-            $please  ln -s /etc/sv/lightdm/ /var/service/
+            $please  ln -s /etc/sv/lightdm /var/service/
             ;;
 
         4)
@@ -155,7 +155,7 @@ while true; do
             base-sv
             $please bash << "EOF"
             xbps-install -Sy lightdm mutter budgie-desktop gnome-keyring polkit-gnome udisks2 network-manager-applet nemo tilix engrampa papirus-icon-theme arc-theme
-            ln -sf /etc/sv/lightdm/ /var/service/
+            ln -sf /etc/sv/lightdm /var/service/
             
             mkdir -p /etc/xdg/autostart
             cat > /etc/xdg/autostart/nm-applet.desktop << 'INNER_EOF'
@@ -175,7 +175,7 @@ EOF
             configurar_audio_bluetooth
             base-sv
             $please xbps-install -Sy lightdm cinnamon gnome-terminal colord
-            $please ln -sf /etc/sv/lightdm/ /var/service/
+            $please ln -sf /etc/sv/lightdm /var/service/
             ;;
 
         6)
@@ -183,7 +183,7 @@ EOF
             configurar_audio_bluetooth
             base-sv
             $please xbps-install -Sy lightdm icewm xarchiver p7zip ristretto arandr pcmanfm xdg-desktop-portal-gtk
-            $please ln -sf /etc/sv/lightdm/ /var/service/
+            $please ln -sf /etc/sv/lightdm /var/service/
             ;;
             
         7)
@@ -191,7 +191,7 @@ EOF
             configurar_audio_bluetooth
             base-sv
             $please xbps-install -Sy sddm discover qt6-virtualkeyboard qt6-svg qt6-multimedia lxqt
-            $please ln -sf /etc/sv/sddm/ /var/service/
+            $please ln -sf /etc/sv/sddm /var/service/
             ;;
             
         8)
@@ -199,7 +199,7 @@ EOF
             configurar_audio_bluetooth
             base-sv
             $please xbps-install -Sy lightdm mate-extras mate mate-tweak mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot
-            $please ln -sf /etc/sv/lightdm/ /var/service/
+            $please ln -sf /etc/sv/lightdm /var/service/
             ;;
 
     esac
