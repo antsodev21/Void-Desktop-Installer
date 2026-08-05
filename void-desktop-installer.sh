@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#instalar dialog
+if ! command -v dialog >/dev/null 2>&1; then
+    $please xbps-install -Sy dialog
+fi
 #Detector de gestor de permisos de superusuario
 if command -v sudo >/dev/null 2>&1; then
     please="sudo"
@@ -8,9 +12,6 @@ else
     echo "Please Install sudo or doas"
     exit 1
 fi
-echo "#==Void-Linux-Desktop-Installer-by-Antsoftware21==#"
-$please xbps-install -Sy dialog
-
 #==SUBMENÚ-DE-OPCIONES==#
 configurar_audio_bluetooth() {
     # Pregunta por el servidor de audio
@@ -115,6 +116,7 @@ while true; do
         ln -s /etc/sv/dbus/ /var/service/
         ln -s /etc/sv/power-profiles-daemon/ /var/service/
         ln -s /etc/sv/polkitd/ /var/service/
+        ln -sf /etc/sv/dbus /var/service/
         '
     }
     # En el caso que $DESKTOP sea "Escritorio" hara una cosa u otra
@@ -189,7 +191,7 @@ EOF
                 echo "installing mate"
                 configurar_audio_bluetooth
                 base-sv
-                $please xbps-install mate-extra mate mate-tweak mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot
+                $please xbps-install mate-extras mate mate-tweak mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot
             ;;
 
     esac
