@@ -117,7 +117,8 @@ while true; do
         ln -s /etc/sv/power-profiles-daemon/ /var/service/
         ln -s /etc/sv/polkitd/ /var/service/
         ln -sf /etc/sv/dbus /var/service/
-        '
+       '
+    $please sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=ignore/g' /etc/elogind/logind.conf
     }
     # En el caso que $DESKTOP sea "Escritorio" hara una cosa u otra
     case $DESKTOP in
