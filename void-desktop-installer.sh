@@ -138,7 +138,7 @@ while true; do
             configurar_audio_bluetooth
             base-sv
             $please xbps-install -Sy sddm kde-plasma kde-baseapps ark spectacle
-            $please ln -s /etc/sv/sddm /var/service/
+            $please ln -sf /etc/sv/sddm /var/service/
             ;;
 
         3)
@@ -146,7 +146,7 @@ while true; do
             configurar_audio_bluetooth
             base-sv
             $please xbps-install -Sy lightdm xfce4 xfce4-pulseaudio-plugin network-manager-applet
-            $please  ln -s /etc/sv/lightdm /var/service/
+            $please  ln -sf /etc/sv/lightdm /var/service/
             ;;
 
         4)
