@@ -88,7 +88,7 @@ configurar_audio_bluetooth() {
 base-sv() {
     $please bash -c ' 
         # Cambiado polkitd por polkit
-        xbps-install -Sy xorg xdg-user-dirs power-profiles-daemon polkit NetworkManager elogind dbus gvfs-afc gvfs-mtp gvfs-smb xdg-desktop-portal
+        xbps-install -Sy xorg xdg-user-dirs power-profiles-daemon polkit NetworkManager elogind dbus gvfs-afc gvfs-mtp gvfs-smb xdg-desktop-portal nerd-fonts adwaita-fonts
         rm -rf /var/service/dhcpcd/
         rm -rf /var/service/wpa_supplicant
         ln -sf /etc/sv/NetworkManager /var/service/
@@ -165,7 +165,7 @@ while true; do
             $please bash << "EOF"
             xbps-install -Sy lightdm mutter budgie-desktop gnome-keyring polkit-gnome udisks2 network-manager-applet nemo tilix engrampa papirus-icon-theme arc-theme
             ln -sf /etc/sv/lightdm /var/service/
-            
+            e
             mkdir -p /etc/xdg/autostart
             cat > /etc/xdg/autostart/nm-applet.desktop << 'INNER_EOF'
 [Desktop Entry]
