@@ -9,7 +9,7 @@ Este proyecto es un instalador de Entornos de Escritorio para Void, como la part
 - IceWM (NO TESTEADO)
 - Lxqt (NO TESTEADO)
 - MATE (NO TESTEADO)
-# Colaboradores del Proyecto ;3
+# Contribuidores del Proyecto ;3
 - [javiercplus](https://github.com/javiercplus)
 Gracias a el ahora el script esta mejor estructurado, con funciones y otras muchas cosas como usar sudo o doas,
 y también agrego muchísimos escritorios que el testeo ya en su distro creo, y tambien corrigio muchos fallos mios como lo del elogind xd,
