@@ -6,9 +6,9 @@ Este proyecto es un instalador de Entornos de Escritorio para Void, como la part
 - Xfce (FUNCIONAL)
 - Budgie (FUNCIONAL)
 - Cinnamon (NO TESTEADO)
-- IceWM (NO TESTEADO)
-- Lxqt (NO TESTEADO)
+- LXQt (NO TESTEADO)
 - MATE (NO TESTEADO)
+- IceWM (NO TESTEADO)
 # Contribuidores del Proyecto ;3
 - [javiercplus](https://github.com/javiercplus)
 Gracias a el ahora el script esta mejor estructurado, con funciones y otras muchas cosas como usar sudo o doas,
