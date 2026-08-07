@@ -110,9 +110,9 @@ while true; do
         3 "Xfce" \
         4 "Budgie" \
         5 "Cinnamon" \
-        6 "Icewm" \
-        7 "Lxqt" \
-        8 "mate" \
+        6 "LXQt" \
+        7 "MATE" \
+        8 "IceWM" \
         2>&1 >/dev/tty)
     
     # Permite que si le das a Esc o a Cancelar se cancele la instalacion
@@ -186,16 +186,8 @@ EOF
             $please xbps-install -Sy lightdm cinnamon gnome-terminal colord
             $please ln -sf /etc/sv/lightdm /var/service/
             ;;
-
-        6)
-            echo "Installing IceWM"
-            configurar_audio_bluetooth
-            base-sv
-            $please xbps-install -Sy lightdm icewm xarchiver p7zip ristretto arandr pcmanfm xdg-desktop-portal-gtk
-            $please ln -sf /etc/sv/lightdm /var/service/
-            ;;
             
-        7)
+        6)
             echo "Installing LXQt"
             configurar_audio_bluetooth
             base-sv
@@ -203,11 +195,19 @@ EOF
             $please ln -sf /etc/sv/sddm /var/service/
             ;;
             
-        8)
+        7)
             echo "Installing MATE"
             configurar_audio_bluetooth
             base-sv
             $please xbps-install -Sy lightdm mate-extras mate mate-tweak mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot
+            $please ln -sf /etc/sv/lightdm /var/service/
+            ;;
+
+        8)
+            echo "Installing IceWM"
+            configurar_audio_bluetooth
+            base-sv
+            $please xbps-install -Sy lightdm icewm xarchiver p7zip ristretto arandr pcmanfm xdg-desktop-portal-gtk
             $please ln -sf /etc/sv/lightdm /var/service/
             ;;
 
