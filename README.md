@@ -9,7 +9,7 @@ Este proyecto es un instalador de Entornos de Escritorio para Void, como la part
 - LXQt (NO TESTEADO)
 - MATE (NO TESTEADO)
 - IceWM (NO TESTEADO)
-# Los que tengo pensados Agregar
+# Los que tengo pensados Agregar :
 - jwm
 - WMaker
 - i3 WM
