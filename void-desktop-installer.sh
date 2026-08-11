@@ -213,7 +213,6 @@ EOF
 
     esac
 
-    clear
     echo "Desktop installed. Rebooting is recommended."
 
     break
