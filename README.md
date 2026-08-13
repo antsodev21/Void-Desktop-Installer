@@ -28,7 +28,7 @@ Este proyecto es un instalador de Entornos de Escritorio para Void, como la part
 - Xfce : Es un Escritorio Ligero y muy Personalizable (Sacada de la Web de Fedora)
 <img width="1920" height="1114" alt="screenshot-xfce" src="https://github.com/user-attachments/assets/11c89563-b18a-4e5c-80fb-1ae0b1860016" />
 
-- Budgie : Es similar a GNOME pero es más Ligero (Sacada de la Web de Solus)
+- Budgie : Es similar a GNOME pero es más Ligero y Personalizable por Default (Sacada de la Web de Solus)
 <img width="1920" height="1080" alt="Budgie" src="https://github.com/user-attachments/assets/632d69b7-6127-46ff-be8e-e156c697a224" />
 
 # Contribuidores del Proyecto ;3
