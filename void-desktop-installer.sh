@@ -88,11 +88,12 @@ configurar_audio_bluetooth() {
 base-sv() {
     $please bash -c ' 
         # Cambiado polkitd por polkit
-        xbps-install -Sy xorg xdg-user-dirs power-profiles-daemon polkit NetworkManager elogind dbus gvfs-afc gvfs-mtp gvfs-smb xdg-desktop-portal nerd-fonts adwaita-fonts
+        xbps-install -Sy xorg xdg-user-dirs power-profiles-daemon polkit NetworkManager elogind dbus chrony gvfs-afc gvfs-mtp gvfs-smb xdg-desktop-portal nerd-fonts adwaita-fonts
         rm -rf /var/service/dhcpcd/
         rm -rf /var/service/wpa_supplicant
         ln -sf /etc/sv/NetworkManager /var/service/
         ln -sf /etc/sv/dbus /var/service/
+        sudo ln -s /etc/sv/chronyd /var/service/
         ln -sf /etc/sv/power-profiles-daemon /var/service/
         ln -sf /etc/sv/polkitd /var/service/
     '
@@ -129,7 +130,7 @@ while true; do
             echo "Installing GNOME"
             configurar_audio_bluetooth
             base-sv
-            $please xbps-install -Sy gdm gnome
+            $please xbps-install -Sy gdm gnome gnome-software
             $please ln -sf /etc/sv/gdm /var/service/
 
             ;;
@@ -138,7 +139,7 @@ while true; do
             echo "Installing KDE Plasma"
             configurar_audio_bluetooth
             base-sv
-            $please xbps-install -Sy sddm kde-plasma kde-baseapps ark spectacle
+            $please xbps-install -Sy sddm kde-plasma kde-baseapps ark spectacle discover
             $please ln -sf /etc/sv/sddm /var/service/
             ;;
 
@@ -146,7 +147,7 @@ while true; do
             echo "Installing Xfce"
             configurar_audio_bluetooth
             base-sv
-            $please xbps-install -Sy lightdm xfce4 xfce4-pulseaudio-plugin network-manager-applet
+            $please xbps-install -Sy lightdm xfce4 xfce4-pulseaudio-plugin network-manager-applet octoxbps
             $please  ln -sf /etc/sv/lightdm /var/service/
             # Acción al cerrar la tapa usando batería (0 = No hacer nada)
             xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lid-action-on-battery -n -t int -s 0
@@ -163,7 +164,7 @@ while true; do
             configurar_audio_bluetooth
             base-sv
             $please bash << "EOF"
-            xbps-install -Sy lightdm mutter budgie-desktop gnome-keyring polkit-gnome udisks2 network-manager-applet nemo tilix engrampa papirus-icon-theme arc-theme
+            xbps-install -Sy lightdm mutter budgie-desktop gnome-keyring polkit-gnome udisks2 network-manager-applet nemo tilix engrampa gnome-software papirus-icon-theme arc-theme
             ln -sf /etc/sv/lightdm /var/service/
             e
             mkdir -p /etc/xdg/autostart
@@ -183,7 +184,7 @@ EOF
             echo "Installing Cinnamon"
             configurar_audio_bluetooth
             base-sv
-            $please xbps-install -Sy lightdm cinnamon gnome-terminal colord
+            $please xbps-install -Sy lightdm cinnamon gnome-terminal gnome-software colord
             $please ln -sf /etc/sv/lightdm /var/service/
             ;;
             
@@ -199,7 +200,7 @@ EOF
             echo "Installing MATE"
             configurar_audio_bluetooth
             base-sv
-            $please xbps-install -Sy lightdm mate-extras mate mate-tweak mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot
+            $please xbps-install -Sy lightdm mate-extras mate mate-tweak mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot octoxbps
             $please ln -sf /etc/sv/lightdm /var/service/
             ;;
 
@@ -207,7 +208,7 @@ EOF
             echo "Installing IceWM"
             configurar_audio_bluetooth
             base-sv
-            $please xbps-install -Sy lightdm icewm xarchiver p7zip ristretto arandr pcmanfm xdg-desktop-portal-gtk
+            $please xbps-install -Sy lightdm icewm xarchiver p7zip ristretto arandr octoxbps pcmanfm xdg-desktop-portal-gtk 
             $please ln -sf /etc/sv/lightdm /var/service/
             ;;
 
