@@ -93,7 +93,7 @@ base-sv() {
         rm -rf /var/service/wpa_supplicant
         ln -sf /etc/sv/NetworkManager /var/service/
         ln -sf /etc/sv/dbus /var/service/
-        sudo ln -s /etc/sv/chronyd /var/service/
+        ln -sf /etc/sv/chronyd /var/service/
         ln -sf /etc/sv/power-profiles-daemon /var/service/
         ln -sf /etc/sv/polkitd /var/service/
     '
