@@ -129,8 +129,8 @@ while true; do
         1)  
             echo "Installing GNOME"
             configurar_audio_bluetooth
-            base-sv
             $please xbps-install -Sy gdm gnome gnome-software
+            base-sv
             $please ln -sf /etc/sv/gdm /var/service/
 
             ;;
@@ -138,17 +138,16 @@ while true; do
         2)
             echo "Installing KDE Plasma"
             configurar_audio_bluetooth
-            base-sv
             $please xbps-install -Sy sddm kde-plasma kde-baseapps ark spectacle discover
+            base-sv
             $please ln -sf /etc/sv/sddm /var/service/
             ;;
 
         3)
             echo "Installing Xfce"
             configurar_audio_bluetooth
-            base-sv
             $please xbps-install -Sy lightdm xfce4 xfce4-pulseaudio-plugin network-manager-applet octoxbps
-            $please  ln -sf /etc/sv/lightdm /var/service/
+            base-sv
             # Acción al cerrar la tapa usando batería (0 = No hacer nada)
             xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lid-action-on-battery -n -t int -s 0
             
@@ -157,16 +156,14 @@ while true; do
             
             # Evitar que elogind/logind tome el control de la tapa y sobrescriba a Xfce
             xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/logind-handle-lid-switch -n -t bool -s false
+            $please ln -sf /etc/sv/lightdm /var/service/
             ;;
 
         4)
             echo "Installing Budgie"
             configurar_audio_bluetooth
-            base-sv
             $please bash << "EOF"
             xbps-install -Sy lightdm mutter budgie-desktop gnome-keyring polkit-gnome udisks2 network-manager-applet nemo tilix engrampa gnome-software papirus-icon-theme arc-theme
-            ln -sf /etc/sv/lightdm /var/service/
-            e
             mkdir -p /etc/xdg/autostart
             cat > /etc/xdg/autostart/nm-applet.desktop << 'INNER_EOF'
 [Desktop Entry]
@@ -179,36 +176,39 @@ NoDisplay=false
 X-GNOME-Autostart-enabled=true
 INNER_EOF
 EOF
+            base-sv
+            $please ln -sf /etc/sv/lightdm /var/service/
             ;;
+            
         5)
             echo "Installing Cinnamon"
             configurar_audio_bluetooth
-            base-sv
             $please xbps-install -Sy lightdm cinnamon gnome-terminal gnome-software colord
+            base-sv
             $please ln -sf /etc/sv/lightdm /var/service/
             ;;
             
         6)
             echo "Installing LXQt"
             configurar_audio_bluetooth
-            base-sv
             $please xbps-install -Sy sddm discover qt6-virtualkeyboard qt6-svg qt6-multimedia lxqt
+            base-sv
             $please ln -sf /etc/sv/sddm /var/service/
             ;;
             
         7)
             echo "Installing MATE"
             configurar_audio_bluetooth
+            $please xbps-install -Sy lightdm mate-extra mate mate-tweak mate-applet mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot octoxbps
             base-sv
-            $please xbps-install -Sy lightdm mate-extras mate mate-tweak mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot octoxbps
             $please ln -sf /etc/sv/lightdm /var/service/
             ;;
 
         8)
             echo "Installing IceWM"
             configurar_audio_bluetooth
-            base-sv
             $please xbps-install -Sy lightdm icewm xarchiver p7zip ristretto arandr octoxbps pcmanfm xdg-desktop-portal-gtk 
+            base-sv
             $please ln -sf /etc/sv/lightdm /var/service/
             ;;
 
