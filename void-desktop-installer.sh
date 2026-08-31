@@ -191,7 +191,7 @@ EOF
         6)
             echo "Installing LXQt"
             configurar_audio_bluetooth
-            $please xbps-install -Sy sddm discover qt6-virtualkeyboard qt6-svg qt6-multimedia lxqt
+            $please xbps-install -Sy sddm discover qt6-svg qt6-multimedia lxqt
             base-sv
             $please ln -sf /etc/sv/sddm /var/service/
             ;;
