@@ -7,7 +7,7 @@ Este proyecto es un instalador de Entornos de Escritorio para Void, como la part
 - Budgie (FUNCIONAL)
 - Cinnamon (NO TESTEADO)
 - LXQt (NO TESTEADO)
-- MATE (NO TESTEADO)
+- MATE (FUNCIONAL)
 - IceWM (NO TESTEADO)
 # Los que tengo pensados Agregar :
 - jwm
