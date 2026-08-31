@@ -199,7 +199,7 @@ EOF
         7)
             echo "Installing MATE"
             configurar_audio_bluetooth
-            $please xbps-install -Sy lightdm mate-extra mate mate-tweak mate-applet mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot octoxbps
+            $please xbps-install -Sy lightdm mate-extra mate mate-tweak network-manager-applet blueman mate-polkit mate-terminal caja-wallpaper caja-sendto caja-open-terminal caja-extensions gnome-keyring gnome-screenshot octoxbps
             base-sv
             $please ln -sf /etc/sv/lightdm /var/service/
             ;;
