@@ -138,7 +138,7 @@ while true; do
         2)
             echo "Installing KDE Plasma"
             configurar_audio_bluetooth
-            $please xbps-install -Sy sddm kde-plasma kde-baseapps ark spectacle discover
+            $please xbps-install -Sy sddm kde-plasma kde-baseapps ark spectacle gwenview discover
             base-sv
             $please ln -sf /etc/sv/sddm /var/service/
             ;;
