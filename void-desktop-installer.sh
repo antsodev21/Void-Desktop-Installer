@@ -114,6 +114,7 @@ while true; do
         6 "LXQt" \
         7 "MATE" \
         8 "IceWM" \
+        9 "Other DE/WM" \
         2>&1 >/dev/tty)
     
     # Permite que si le das a Esc o a Cancelar se cancele la instalacion
@@ -211,6 +212,11 @@ EOF
             base-sv
             $please ln -sf /etc/sv/lightdm /var/service/
             ;;
+        
+        9)
+            echo "Installing Essential Packages to use a Desktop/WM"
+            configurar_audio_bluetooth
+            base-sv
 
     esac
 
