@@ -10,6 +10,7 @@ Este proyecto es un instalador de Entornos de Escritorio para Void, como la part
 - MATE (FUNCIONAL)
 - IceWM (NO TESTEADO)
 - Other DE/WM (FUNCIONAL)
+
 *Esta opcion solo instala paquetes esenciales para el funcionamiento de un DE/WM*
 # Hablando un poco de Cada Escritorio :
 - GNOME : Es un Escritorio muy Simple y Minimalista (Sacada de la Web de Solus)
