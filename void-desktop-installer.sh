@@ -164,7 +164,7 @@ while true; do
             echo "Installing Budgie"
             configurar_audio_bluetooth
             $please bash << "EOF"
-            xbps-install -Sy lightdm mutter budgie-desktop gnome-keyring polkit-gnome udisks2 network-manager-applet nemo tilix engrampa gnome-software papirus-icon-theme arc-theme
+            xbps-install -Sy lightdm mutter budgie-desktop gnome-keyring polkit-gnome udisks2 network-manager-applet nemo tilix engrampa gnome-software papirus-icon-theme arc-theme xdg-desktop-portal-gtk
             mkdir -p /etc/xdg/autostart
             cat > /etc/xdg/autostart/nm-applet.desktop << 'INNER_EOF'
 [Desktop Entry]
@@ -177,6 +177,11 @@ NoDisplay=false
 X-GNOME-Autostart-enabled=true
 INNER_EOF
 EOF
+
+            cat > /etc/environment <> 'INNER_EOF'
+MUTTER_DEBUG_DISABLE_TRIPLE_BUFFERING=1
+EOF
+
             base-sv
             $please ln -sf /etc/sv/lightdm /var/service/
             ;;

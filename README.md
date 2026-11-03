@@ -9,9 +9,15 @@ Este proyecto es un instalador de Entornos de Escritorio para Void, como la part
 - LXQt (NO TESTEADO)
 - MATE (FUNCIONAL)
 - IceWM (NO TESTEADO)
-- Other DE/WM (FUNCIONAL)
-
-*La opcion Other DE/WM solo instala paquetes esenciales para el funcionamiento de un DE/WM*
+# Los que tengo pensados Agregar :
+- jwm
+- WMaker
+- i3 WM
+- DWM
+- Qtile
+- SwayWM
+- Niri
+- dwl/MangoWC
 # Hablando un poco de Cada Escritorio :
 - GNOME : Es un Escritorio muy Simple y Minimalista (Sacada de la Web de Solus)
 <img width="1920" height="1080" alt="GNOME" src="https://github.com/user-attachments/assets/704198d6-c590-4314-a95d-8a2b07d6aaa1" />
